@@ -1,87 +1,142 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ice Cream Sales</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 20px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Sales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
 
-    button {
-      padding: 10px;
-      background-color: #ff6f61;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+        header {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-    button:hover {
-      background-color: #e85a4f;
-    }
+        h1 {
+            margin: 0;
+        }
 
-    .cart {
-      margin-top: 20px;
-    }
-  </style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .ice-cream-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .ice-cream-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .ice-cream-item h3 {
+            margin: 10px 0;
+            color: #ff69b4;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #ff1493;
+        }
+
+        footer {
+            background-color: #ff69b4;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .cart {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Welcome to Ice Cream Heaven!</h1>
+        <div class="cart">
+            Cart: <span id="cart-count">0</span>
+        </div>
+    </header>
 
-  <h1>Ice Cream Sales</h1>
-  <h3>Choose a flavor and add to your cart!</h3>
+    <div class="container">
+        <div class="ice-cream-item">
+            <img src="chocolate icecream.jpg" alt="Chocolate Ice Cream">
+            <h3>Chocolate Ice Cream</h3>
+            <p class="price">$4.99</p>
+            <button class="button" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="ice-cream-item">
+            <img src="vannilla icecream.jpg" alt="Vanilla Ice Cream">
+            <h3>Vanilla Ice Cream</h3>
+            <p class="price">$3.99</p>
+            <button class="button" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="ice-cream-item">
+            <img src="strawberry icecream.jpg" alt="Strawberry Ice Cream">
+            <h3>Strawberry Ice Cream</h3>
+            <p class="price">$4.49</p>
+            <button class="button" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="ice-cream-item">
+            <img src="mint ice cream.jpg" alt="Mint Ice Cream">
+            <h3>Mint Ice Cream</h3>
+            <p class="price">$4.29</p>
+            <button class="button" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
 
-  <div>
-    <h2>Vanilla - $3.50</h2>
-    <button onclick="addToCart('Vanilla', 3.5)">Add to Cart</button>
-  </div>
-  <div>
-    <h2>Chocolate - $4.00</h2>
-    <button onclick="addToCart('Chocolate', 4)">Add to Cart</button>
-  </div>
-  <div>
-    <h2>Strawberry - $3.80</h2>
-    <button onclick="addToCart('Strawberry', 3.8)">Add to Cart</button>
-  </div>
+    <footer>
+        <p>&copy; 2025 Ice Cream Heaven. All rights reserved.</p>
+    </footer>
 
-  <div class="cart">
-    <h2>Your Cart</h2>
-    <ul id="cart-list"></ul>
-    <h3>Total: $<span id="total">0.00</span></h3>
-    <button onclick="clearCart()">Clear Cart</button>
-  </div>
+    <script>
+        let cartCount = 0;
 
-  <script>
-    let cart = [];
-    let total = 0;
-
-    function addToCart(flavor, price) {
-      cart.push({ flavor, price });
-      total += price;
-      updateCart();
-    }
-
-    function updateCart() {
-      const cartList = document.getElementById('cart-list');
-      const totalElement = document.getElementById('total');
-      
-      cartList.innerHTML = '';
-      cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.flavor} - $${item.price.toFixed(2)}`;
-        cartList.appendChild(li);
-      });
-
-      totalElement.textContent = total.toFixed(2);
-    }
-
-    function clearCart() {
-      cart = [];
-      total = 0;
-      updateCart();
-    }
-  </script>
-
+        function addToCart() {
+            cartCount++;
+            document.getElementById("cart-count").innerText = cartCount;
+        }
+    </script>
 </body>
-</html>
+              </html>
